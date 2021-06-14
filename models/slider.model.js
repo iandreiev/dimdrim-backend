@@ -1,41 +1,17 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const slides = new mongoose.Schema({
+const sliderSchema = new mongoose.Schema({
     title:{
-        type: String
+        type: String,
+        required: true
     },
-    cta:{
-        type: Boolean
-    },
-    heroImage:{
-        type:Boolean
-    },
-    onlyText:{
-        type:Boolean
-    },
-    content:{
-        type:String
-    },
-    cta_btn:{
-        type:String
-    },
-    cta_link:{
-        type: String
-    },
-    hero:{
-        type: String
-    },
-    image:{
+    alias:{
         type:String
     },
     created_at:{
         type:Date,
-        default:new Date().getTime()
-    },
-    order:{
-        type:Number
+        default: new Date().getTime()
     }
-
 })
 
-module.exports = mongoose.model('slides',slides)
+module.exports = mongoose.model('slider',sliderSchema)

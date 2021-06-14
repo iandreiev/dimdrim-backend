@@ -9,6 +9,7 @@ router.get('/temp-customer', controller.getTempCustomers)
 router.get('/:id', controller.getUser)
 router.patch('/:id/type', controller.setType)
 router.patch('/:id', controller.updateUser)
+router.patch('/setLastLogin/:id',controller.setLastLogin)
 router.delete('/:id',  controller.deleteUser)
 
 module.exports = router

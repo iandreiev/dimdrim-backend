@@ -29,7 +29,12 @@ module.exports.login = async (req, res) => {
                     phone: candidate.phone,
                     midname: candidate.midname,
                     type:candidate.type,
-                    created_at:candidate.created_at
+                    created_at:candidate.created_at,
+                    location: candidate.location,
+                    billing_address: candidate.billing_address,
+                    country: candidate.country,
+                    country_code: candidate.country_code,
+                    last_login: candidate.last_login
                 }
             })
         } else {
@@ -64,8 +69,12 @@ module.exports.register = async (req, res) => {
             name: req.body.name,
             midname: req.body.midname,
             type: req.body.type,
+            location: req.body.location,
+            billing_address: req.body.billing_address,
+            country: req.body.country,
+            country_code: req.body.country_code,
+            last_login:req.body.last_login
             // phone: req.body.phone,
-            created_at: moment().format('DD.MM.YYYY-HH:mm:ss')
         })
 
         try {
@@ -78,7 +87,12 @@ module.exports.register = async (req, res) => {
                 type: user.type,
                 phone:user.phone,
                 type: user.type,
-                created_at: user.created_at
+                created_at: user.created_at,
+                billing_address: user.billing_address,
+                location: user.location,
+                country: user.country,
+                country_code: user.country_code,
+                last_login: user.last_login
             })
         }
         catch (e) {      

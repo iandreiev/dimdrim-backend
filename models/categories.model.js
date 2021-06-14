@@ -8,7 +8,12 @@ const categoriesSchema = new mongoose.Schema({
         type:String
     },
     parent:{
-        type:Array
+        type: mongoose.Types.ObjectId,
+        ref: 'categories'
+    },
+    ifParent:{
+        type:Boolean,
+        default:false
     },
     image:{
         type: String

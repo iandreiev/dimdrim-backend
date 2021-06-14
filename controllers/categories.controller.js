@@ -15,6 +15,7 @@ module.exports.create = async (req,res) => {
         res.status(201).json(category)
     }
     catch(e){
+        console.log(e)
         errorHandler(res, e)
     }
 }
@@ -62,6 +63,7 @@ module.exports.setParent = async (req,res) => {
         parent: req.body.parent,
         image: req.body.image,
         type: req.body.type,
+        ifParent: req.body.ifParent,
         background: req.body.background
 
     })
@@ -70,6 +72,7 @@ module.exports.setParent = async (req,res) => {
        res.status(201).json(category)
     }
     catch(e){
+        console.log(e)
         errorHandler(res,e)
     }
 }
@@ -90,7 +93,7 @@ module.exports.getByAlias = async (req,res) => {
             alias: req.params.alias
         }
 
-        const category = await Category.find(filter)
+        const category = await Category.findOne(filter)
         res.status(200).json(category)
     }
     catch(e){

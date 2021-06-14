@@ -36,6 +36,42 @@ const userSchema = new mongoose.Schema({
     created_at:{
         type:String,
         // required:false
+        default: new Date().getTime()
+    },
+    location:{
+        type:String
+    },
+    country:{
+        type:String
+    },
+    country_code:{
+        type:String
+    },
+    last_location:{
+        type:String
+    },
+    IP:{
+        type: String
+    },
+    last_login:{
+        type:Object,
+        default:{},
+        device:{
+            type:String,
+            default: ""
+        },
+        ip:{
+            type:String,
+            default:""
+        },
+        logged_at:{
+            type:Date,
+            default:""
+        },
+        last_location:{
+            type:String,
+            default:""
+        }
     }
 })
 

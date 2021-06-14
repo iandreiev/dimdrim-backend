@@ -31,8 +31,8 @@ module.exports.create = async (req,res) =>{
         res.status(201).json([payment, pay])
     }
     catch(e){
-        errorHandler(res, e)
         console.log(e)
+        errorHandler(res, e)
     }
 }
 
@@ -52,11 +52,13 @@ module.exports.checkPayment = async(req,res) =>{
             res.status(200).json(json)
         },
         (error,response)=>{
+            console.log(error, response)
             res.status(500).json([error,response])
         })
         
     }
     catch(e){
+        console.log(e)
         errorHandler(res,e)
     }
 }

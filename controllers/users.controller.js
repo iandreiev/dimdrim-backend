@@ -4,7 +4,7 @@ const errorHandler = require('../utils/errorHandler.util')
 module.exports.getUsers = async (req,res) => {
     try {
        
-        const user = await User.find({}).select('username name midname phone email type')
+        const user = await User.find({}).select('username name midname phone email type location billing_address country country_code last_login')
 
         res.status(200).json(
            user
@@ -67,7 +67,11 @@ module.exports.setType = async (req,res) => {
             phone: user.phone,
             midname: user.midname,
             type:user.type,
-            created_at:user.created_at
+            created_at:user.created_at,
+            location: user.location,
+            billing_address: user.billing_address,
+            country: user.country,
+            country_code:  user.country_code,
         })
     }
     catch(e){
@@ -89,7 +93,11 @@ module.exports.getUser = async (req,res) => {
             phone: user.phone,
             type: user.type,
             midname: user.midname,
-            created_at:user.created_at
+            created_at:user.created_at,
+            location: user.location,
+            billing_address: user.billing_address,
+            country: user.country,
+            country_code:  user.country_code,
         })
     }
     catch(e){
@@ -110,7 +118,11 @@ module.exports.updateUser = async (req,res) => {
             username:user.username,
             phone: user.phone,
             type:user.type,
-            created_at:user.created_at
+            created_at:user.created_at,
+            location: user.location,
+            billing_address: user.billing_address,
+            country: user.country,
+            country_code:  user.country_code,
         })
     }
     catch(e){
@@ -123,6 +135,28 @@ module.exports.deleteUser = async (req,res) => {
     try{
         await User.remove({ _id: req.params.id })
         res.status(200).json({ msg: 'delete_success' })
+    }
+    catch(e){
+        errorHandler(res,e)
+    }
+}
+
+//ANALYTICS PURPOSES ONLY 
+module.exports.setLastLogin = async (req,res) => {
+    try{
+         await User.findOneAndUpdate(
+            {_id: req.params.id},
+            {$set:{
+                last_login:{
+                    device: req.body.device,
+                    ip:req.body.ip,
+                    logged_at: req.body.logged_at
+                }
+            }},
+            {new:true}
+            )
+
+        res.json({code: 200, msg: 'SET_LAST_LOGIN'})
     }
     catch(e){
         errorHandler(res,e)

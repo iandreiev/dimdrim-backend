@@ -23,11 +23,8 @@ const shopSchema = new mongoose.Schema({
     stock_qty:{
         type: Number
     },
-    price:{
-        type: Number
-    },
-    sale_price:{
-        type: Number
+    prices:{
+        type: Array
     },
     sale:{
         type: String,
@@ -43,6 +40,9 @@ const shopSchema = new mongoose.Schema({
         type: String
     },
     vendor:{
+        type: String
+    },
+    public_key:{
         type: String
     }
 })
